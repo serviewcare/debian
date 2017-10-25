@@ -12,4 +12,7 @@ script:
 after_script:
 - docker images
 after_success:
-- docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASSWORD"; docker push "$image"
+- if [ "$TRAVIS_BRANCH" == "master" ]; then
+  docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASSWORD";
+  docker push "$image";
+  fi
