@@ -10,4 +10,7 @@ before_script:
 script:
 - travis_retry docker build -t "$image" .
 after_script:
-- docker imagesgit
+- docker images
+deploy:
+- docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASSWORD"
+- docker push "$image"
